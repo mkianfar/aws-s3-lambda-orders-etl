@@ -1,0 +1,3 @@
+{"order_id": "1", "order_date": "2026-10-01", "city": "Sydney", "amount_cents": 1200}
+{"order_id": "2", "order_date": "2026-10-01", "city": "Melbourne", "amount_cents": 850}
+{"order_id": "4", "order_date": "2026-10-01", "city": "Sydney", "amount_cents": 300}

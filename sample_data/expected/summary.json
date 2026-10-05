@@ -1,0 +1,19 @@
+{
+  "source": "input/orders.csv",
+  "valid_count": 3,
+  "rejected_count": 3,
+  "by_date_and_city": [
+    {
+      "order_date": "2026-10-01",
+      "city": "Melbourne",
+      "order_count": 1,
+      "total_amount_cents": 850
+    },
+    {
+      "order_date": "2026-10-01",
+      "city": "Sydney",
+      "order_count": 2,
+      "total_amount_cents": 1500
+    }
+  ]
+}

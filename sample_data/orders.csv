@@ -1,0 +1,7 @@
+order_id,order_date,city,amount_cents
+1,2026-10-01,SYDNEY,1200
+2,2026-10-01, melbourne ,850
+3,2026-10-02,Sydney,-20
+4,2026-10-01,Sydney,300
+4,2026-10-01,Sydney,300
+5,not-a-date,Brisbane,500

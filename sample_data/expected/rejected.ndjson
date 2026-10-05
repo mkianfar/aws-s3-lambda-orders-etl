@@ -1,0 +1,3 @@
+{"row_number": 4, "reason": "amount_cents must be a positive integer", "record": {"order_id": "3", "order_date": "2026-10-02", "city": "Sydney", "amount_cents": "-20"}}
+{"row_number": 6, "reason": "duplicate order_id", "record": {"order_id": "4", "order_date": "2026-10-01", "city": "Sydney", "amount_cents": "300"}}
+{"row_number": 7, "reason": "invalid order_date", "record": {"order_id": "5", "order_date": "not-a-date", "city": "Brisbane", "amount_cents": "500"}}
