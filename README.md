@@ -43,7 +43,7 @@ The Lambda pipeline reuses the **same S3 bucket, Lambda function, IAM role, and 
 5. Upload [sample_data/orders.csv](sample_data/orders.csv) to S3 as `input/orders.csv`. If that key already exists, choose **Overwrite**. Upload **after** deploying the new code to trigger it.
 6. Open `output/clean/orders.jsonl`, `output/rejected/orders.jsonl`, and `output/summary/orders.json` in S3. The summary should report `valid_count: 3` and `rejected_count: 3`. In Lambda's **Monitor → View CloudWatch logs**, look for `valid=3 rejected=3`.
 
-The older `output/orders.jsonl` from version 1 is separate and can be deleted after comparing results. The trigger listens only to `input/*.csv`, so writing to `output/` does not invoke the function again.
+The older `output/orders.jsonl` is a version 1 artifact and is not used by this pipeline. The trigger listens only to `input/*.csv`, so writing to `output/` does not invoke the function again.
 
 ## Query the clean output with Athena
 
@@ -61,12 +61,6 @@ Python 3.9 or newer is sufficient. No packages or AWS credentials are needed for
 python3 -m unittest discover -s tests -v
 ```
 
-## Cost and cleanup
+## Cost profile
 
-The sample is under 1 MB and uses one S3 upload, one Lambda invocation, three S3 output writes, small CloudWatch logs, and one small Athena query. Athena also stores query results in S3 and registers table metadata in the AWS Glue Data Catalog. **AWS account plan and remaining credits still determine billing.** The AWS Free plan does not charge until an upgrade to Paid, and AWS ends the Free plan after six months or when its credits are exhausted, whichever occurs first. Check your account's **Cost and Usage** widget rather than assuming an account is on the Free plan. [AWS Free Tier FAQ](https://aws.amazon.com/free/free-tier-faqs/) · [Lambda pricing](https://aws.amazon.com/lambda/pricing/) · [S3 pricing](https://aws.amazon.com/s3/pricing/)
-
-To clean up after collecting evidence for your portfolio, drop the Athena table and database, remove the S3 trigger, delete the Lambda function, empty and delete the bucket (including `athena-results/`), and delete the CloudWatch log group. The files in this repository remain available on GitHub.
-
-## Portfolio evidence
-
-Include screenshots of the three output objects, the Athena query result, and the CloudWatch row counts. Crop out your AWS account ID and any personal details before publishing. Never commit AWS access keys or credentials.
+The sample CSV is under 1 MB. Processing it uses one S3 upload, one Lambda invocation, three S3 output writes, and CloudWatch logging. Athena queries scan the clean output, store results in S3, and use AWS Glue Data Catalog metadata. Charges depend on account plan, remaining credits, and usage. [AWS Free Tier FAQ](https://aws.amazon.com/free/free-tier-faqs/) · [Athena pricing](https://aws.amazon.com/athena/pricing/) · [Lambda pricing](https://aws.amazon.com/lambda/pricing/) · [S3 pricing](https://aws.amazon.com/s3/pricing/)
