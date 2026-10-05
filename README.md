@@ -32,6 +32,16 @@ flowchart LR
 
 The six-row [sample CSV](sample_data/orders.csv) produces three clean rows and three rejected rows. The [expected outputs](sample_data/expected) show the resulting files.
 
+## Example run
+
+The six-row sample produces three valid and three rejected orders. The CloudWatch log records the Lambda row counts.
+
+![CloudWatch log showing three valid and three rejected orders](docs/lambda-cloudwatch-log.png)
+
+Athena reads the three valid orders from `orders_etl.orders_clean`.
+
+![Athena query returning three clean orders](docs/athena-results.png)
+
 ## Deploy using the AWS Console
 
 The Lambda pipeline reuses the **same S3 bucket, Lambda function, IAM role, and S3 trigger**. Athena reads the clean output using a table definition; it does not copy the data.
