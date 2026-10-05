@@ -63,7 +63,7 @@ class PipelineTests(unittest.TestCase):
                 return {"ContentLength": len(payload), "Body": io.BytesIO(payload)}
 
             def put_object(self, Bucket, Key, Body, ContentType):
-                uploaded[Key] = json.loads(Body) if Key.endswith("summary.json") else Body
+                uploaded[Key] = json.loads(Body) if Key.endswith(".json") else Body
 
         fake_s3 = FakeS3()
         event = {
@@ -83,12 +83,12 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual(
             set(uploaded),
             {
-                "output/orders/clean.jsonl",
-                "output/orders/rejected.jsonl",
-                "output/orders/summary.json",
+                "output/clean/orders.jsonl",
+                "output/rejected/orders.jsonl",
+                "output/summary/orders.json",
             },
         )
-        self.assertEqual(uploaded["output/orders/summary.json"]["rejected_count"], 3)
+        self.assertEqual(uploaded["output/summary/orders.json"]["rejected_count"], 3)
 
 
 if __name__ == "__main__":

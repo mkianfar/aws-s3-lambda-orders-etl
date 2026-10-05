@@ -96,11 +96,10 @@ def lambda_handler(event, context):
         csv_text = obj["Body"].read().decode("utf-8-sig")
         clean, rejected, summary = transform_csv(csv_text)
         name = key[len("input/") : -len(".csv")]
-        prefix = f"output/{name}"
         outputs = {
-            f"{prefix}/clean.jsonl": (to_jsonl(clean), "application/x-ndjson"),
-            f"{prefix}/rejected.jsonl": (to_jsonl(rejected), "application/x-ndjson"),
-            f"{prefix}/summary.json": (
+            f"output/clean/{name}.jsonl": (to_jsonl(clean), "application/x-ndjson"),
+            f"output/rejected/{name}.jsonl": (to_jsonl(rejected), "application/x-ndjson"),
+            f"output/summary/{name}.json": (
                 json.dumps(
                     {
                         "source": key,
